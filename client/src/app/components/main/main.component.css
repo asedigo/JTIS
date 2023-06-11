@@ -1,0 +1,39 @@
+.container {
+    margin-left: 0;
+    max-width: 100%;
+}
+
+.card.weather-forecast {
+    color: #4B515D;
+    width: 13rem;
+    height: 10.5rem;
+    border-radius: 35px;
+}
+
+.card.weather-forecast img {
+    width: 1.7rem;
+}
+
+.weather-desc {
+    font-size: 10px;
+}
+
+.card-weather {
+    margin: 0 5px 0 5px;
+    width: 30%;
+    display: inline-flex;
+}
+
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.place-details .card-subtitle {
+    font-size: 10px;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    width: 5%;
+}

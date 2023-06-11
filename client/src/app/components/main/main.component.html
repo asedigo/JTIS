@@ -1,0 +1,58 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="list-group aside">
+                <a href="javascript:void(0);"
+                [class.active]="active_city.toLowerCase() == city.toLowerCase()"
+                *ngFor="let city of cities" class="list-group-item list-group-item-action"
+                (click)="getInfo(city)">{{ city }}</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div *ngFor="let weather of weather_data; index as i" class="carousel-item text-center" [class.active]="i == 1">
+                            <div class="card card-weather" *ngFor="let weather_data of weather">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <img src="http://openweathermap.org/img/w/{{ weather_data.weather[0].icon }}.png" width="50px">
+                                        {{ weather_data.dt_txt | date:'yyyy-MM-dd HH:mm'}}
+                                    </h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ weather_data.weather[0].description }}</h6>
+                                    <p class="card-text"><i class="fa-solid fa-temperature-three-quarters"></i> Feels like: {{ (weather_data.main.feels_like-273.15).toFixed(2) }}°C</p>
+                                    <span class="card-link">
+                                        <i class="fa-solid fa-wind"></i> {{ weather_data.wind.speed}} m/s
+                                    </span>
+                                    <span class="card-link">
+                                        <i class="fa-solid fa-cloud"></i> {{ weather_data.clouds.all }}%
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev btn-primary" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5 place-details">
+                <ng-container *ngIf="has_place">
+                    <div *ngFor="let details of place_details.data.features" class="card col-sm-2 m-2">
+                      <div class="card-body">
+                        <h6 class="card-title">{{ details.properties.address_line1 }}</h6>
+                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa-solid fa-building-circle-arrow-right"></i> {{ details.properties.district }}</h6>
+                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa-solid fa-location-dot"></i> {{ details.properties.postcode }}</h6>
+                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa fa-sharp fa-light fa-street-view"></i> {{ details.properties.street }}</h6>
+                      </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
