@@ -21,12 +21,12 @@
                                         {{ weather_data.dt_txt | date:'yyyy-MM-dd HH:mm'}}
                                     </span> <br>
                                     <span class="card-subtitle mb-2 text-body-secondary">{{ weather_data.weather[0].description }}</span>
-                                    <p class="card-text mb-0"><i class="fa-solid fa-temperature-three-quarters"></i> Feels like: {{ (weather_data.main.feels_like-273.15).toFixed(2) }}°C</p>
+                                    <p class="card-text mb-0"><i class="fa-solid fa-temperature-three-quarters text-danger"></i> Feels like: {{ (weather_data.main.feels_like-273.15).toFixed(2) }}°C</p>
                                     <span class="card-link">
-                                        <i class="fa-solid fa-wind"></i> {{ weather_data.wind.speed}} m/s
+                                        <i class="fa-solid fa-wind text-info"></i> {{ weather_data.wind.speed}} m/s
                                     </span>
                                     <span class="card-link">
-                                        <i class="fa-solid fa-cloud"></i> {{ weather_data.clouds.all }}%
+                                        <i class="fa-solid fa-cloud text-primary"></i> {{ weather_data.clouds.all }}%
                                     </span>
                                 </div>
                             </div>
@@ -43,17 +43,17 @@
                 </div>
             </div>
             <div class="row">
-                <span class="badge title-place">{{ active_city }} Places</span>
+                <span class="badge title-place">{{ active_city }} Places </span>
             </div>
             <div class="row mt-5 place-details justify-content-center m-2">
                 <ng-container *ngIf="!is_processing_places; then hasPlaceDetails; else noPlaceDetails"></ng-container>
                 <ng-template #hasPlaceDetails>
                     <div *ngFor="let details of place_details.data.features" class="card col-sm-3 m-1">
-                      <div class="card-body">
+                      <div class="card-body text-center">
                         <h6 class="card-title">{{ details.properties.address_line1 }}</h6>
-                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa-solid fa-building-circle-arrow-right"></i> {{ details.properties.district }}</h6>
-                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa-solid fa-location-dot"></i> {{ details.properties.postcode }}</h6>
-                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa fa-sharp fa-light fa-street-view"></i> {{ details.properties.street }}</h6>
+                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="text-success fa-solid fa-building-circle-arrow-right"></i> {{ details.properties.district }}</h6>
+                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="text-danger fa-solid fa-location-dot"></i> {{ details.properties.postcode }}</h6>
+                        <h6 class="card-subtitle mb-1 text-body-secondary"><i class="text-primary fa fa-sharp fa-light fa-street-view"></i> {{ details.properties.street }}</h6>
                       </div>
                     </div>
                 </ng-template>
