@@ -3,7 +3,7 @@
 1. Go to the file folder terminal and run 'composer install'
 - This to install the vendor file folder that my need the application
 2. Once finish run the application with 'php artisan serve --port=8000'
-3. Using port 8000 is set to our client side once called
+3. Using port 8000 is set to our client side once called within service and this api url stored in environment file (src/environments)
 
 - Angular client
 1. Go to the file folder terminal and run 'npm install'
@@ -12,8 +12,8 @@
 
 #Summary of the System
 #The system is contains of weather & place information within Japan and specific city
-Backend tech: PHP (using Laravel Framework)
-Frontend tech: Typescipt (Angular CLI 16 Framework)
+Backend: PHP (used Laravel Framework)
+Frontend: HTML, CSS, Javascript (used Angular CLI 16 Framework)
 
 Why use Laravel as REST API?
 - This API get data to external api such as weather forecast & Japan chosen city place details
@@ -24,4 +24,4 @@ Why use Laravel as REST API?
 Why use Angular as Client-side
 - Angular has provide file structured
 - Easily to maintain
-- I used standalone components to boost the performance of the page
+- I used standalone components to boost the performance of the page and to load only important module per routes
