@@ -23,5 +23,5 @@ Why use Laravel as REST API?
 
 Why use Angular as Client-side
 - Angular has provide file structured
-- Easily to maintain
+- Easily to maintain and find where to do the changes
 - I used standalone components to boost the performance of the page and to load only important module per routes
