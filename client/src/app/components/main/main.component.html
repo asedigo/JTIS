@@ -8,19 +8,20 @@
                 (click)="getInfo(city)">{{ city }}</a>
             </div>
         </div>
-        <div class="col">
+        <div class="col-sm-10">
             <div class="row">
-                <div id="carouselExample" class="carousel slide">
+                <span class="badge title-weather mt-4">Five (5) day weather forecast</span>
+                <div id="carouselExample" class="carousel slide mt-4">
                     <div class="carousel-inner">
                         <div *ngFor="let weather of weather_data; index as i" class="carousel-item text-center" [class.active]="i == 1">
                             <div class="card card-weather" *ngFor="let weather_data of weather">
                                 <div class="card-body">
-                                    <h5 class="card-title">
+                                    <span class="card-title">
                                         <img src="http://openweathermap.org/img/w/{{ weather_data.weather[0].icon }}.png" width="50px">
                                         {{ weather_data.dt_txt | date:'yyyy-MM-dd HH:mm'}}
-                                    </h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ weather_data.weather[0].description }}</h6>
-                                    <p class="card-text"><i class="fa-solid fa-temperature-three-quarters"></i> Feels like: {{ (weather_data.main.feels_like-273.15).toFixed(2) }}°C</p>
+                                    </span> <br>
+                                    <span class="card-subtitle mb-2 text-body-secondary">{{ weather_data.weather[0].description }}</span>
+                                    <p class="card-text mb-0"><i class="fa-solid fa-temperature-three-quarters"></i> Feels like: {{ (weather_data.main.feels_like-273.15).toFixed(2) }}°C</p>
                                     <span class="card-link">
                                         <i class="fa-solid fa-wind"></i> {{ weather_data.wind.speed}} m/s
                                     </span>
@@ -41,9 +42,13 @@
                     </button>
                 </div>
             </div>
-            <div class="row mt-5 place-details">
-                <ng-container *ngIf="has_place">
-                    <div *ngFor="let details of place_details.data.features" class="card col-sm-2 m-2">
+            <div class="row">
+                <span class="badge title-place">{{ active_city }} Places</span>
+            </div>
+            <div class="row mt-5 place-details justify-content-center m-2">
+                <ng-container *ngIf="!is_processing_places; then hasPlaceDetails; else noPlaceDetails"></ng-container>
+                <ng-template #hasPlaceDetails>
+                    <div *ngFor="let details of place_details.data.features" class="card col-sm-3 m-1">
                       <div class="card-body">
                         <h6 class="card-title">{{ details.properties.address_line1 }}</h6>
                         <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa-solid fa-building-circle-arrow-right"></i> {{ details.properties.district }}</h6>
@@ -51,7 +56,14 @@
                         <h6 class="card-subtitle mb-1 text-body-secondary"><i class="fa fa-sharp fa-light fa-street-view"></i> {{ details.properties.street }}</h6>
                       </div>
                     </div>
-                </ng-container>
+                </ng-template>
+                <ng-template #noPlaceDetails>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>

@@ -37,3 +37,31 @@
 .carousel-control-prev, .carousel-control-next {
     width: 5%;
 }
+
+.title-weather {
+    width: 75%;
+    margin: auto;
+    background-color: #d4a276;
+    color: #edf6f9;
+}
+
+.title-place {
+    position: relative;
+    top: 1.8rem;
+    width: 75%;
+    margin: auto;
+    background-color: #d4a276;
+    color: #edf6f9;
+}
+
+.list-group-item.active {
+    background-color: #d4a276;
+    border-color: #d4a276;
+    color: whitesmoke;
+}
+
+@media screen and (max-width: 375px) {
+    .card-weather, .card-weather > h5.card-title span {
+        font-size: 12px !important;
+    }
+}

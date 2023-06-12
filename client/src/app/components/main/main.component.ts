@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { LocationService } from 'src/app/services/location.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { apiResponse } from '../model/api-response';
 
 @Component({
   selector: 'app-main',
@@ -27,7 +26,7 @@ export class MainComponent {
   active_city: any = "Osaka";
   weather_data: any[] = [];
   place_details: any;
-  has_place = false;
+  is_processing_places: boolean = true;
   constructor(
     private location_service: LocationService,
     public route: ActivatedRoute,
@@ -39,7 +38,7 @@ export class MainComponent {
   }
 
   getInfo(city_name?: any) {
-    this.has_place = false;
+    this.is_processing_places = true;
     this.active_city = city_name;
     this.location_service.getWeatherForeCast({city: city_name}).subscribe({
       next: (resp) => {
@@ -60,11 +59,13 @@ export class MainComponent {
     }
     this.location_service.getPlaceDetails(place_parameter).subscribe({
       next: (response: any) => {
-        this.place_details = response;
-
+        this.is_processing_places = true;
         if (response.success) {
-          this.has_place = response.success;
+          this.place_details = response;
         }
+      },
+      complete: () => {
+        this.is_processing_places = false;
       }
     });
   }
